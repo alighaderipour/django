@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>base</p>
-</body>
-</html>
+{% extends "movies/_nav.html" %}
+
+{% block title %}Favorite Movies{% endblock %}
+
+{% block content %}
+    {% if favorite_movies %}
+        <ul>
+            {% for movie in favorite_movies %}
+                <li>{{ movie|title }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No movie found!</p>
+    {% endif %}
+{% endblock %}

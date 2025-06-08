@@ -1,5 +1,9 @@
 python -m venv venv
 venv/Scripts/Activate
+echo django > requirements.txt
+type requirements.txt
+notepad requirements.txt
+
 pip install django
 django-admin startproject config .
 python manage.py runserver
