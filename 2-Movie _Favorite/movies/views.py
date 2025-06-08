@@ -13,3 +13,8 @@ def about(request):
 # app/templates/app/index.html
 # movies/templates/movies/index.html
 
+def favorites(request):
+    fav_movies = {
+        'names':['Up!', 'Finding Nemo']
+    }
+    return render(request, 'movies/favoriteMovies.html', fav_movies)
