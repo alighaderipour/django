@@ -1,10 +1,69 @@
+{% load humanize %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Job Postings</title>
+    <style>
+        .container {
+            display: flex;
+            gap: 20px; /* space between columns */
+        }
+        .column {
+            flex: 1; /* each column takes up equal width */
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .job {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-bottom: 1px dashed #aaa;
+        }
+        button{
+            background-color: darkgreen;
+        }
+    </style>
 </head>
 <body>
-    <p> main page</p>
+    <h1 style="text-align: center" >Job Board</h1>
+    <div class="container">
+        <div class="column">
+            <h2>All Job Postings</h2>
+            {% for job in job_postings %}
+                <div class="job">
+                    <strong>{{ job.title }}</strong><br>
+                    {{ job.description }}
+                </div>
+            {% empty %}
+                <p>No job postings found.</p>
+            {% endfor %}
+        <button >more details</button>
+        </div>
+    <div class="column">
+            <h2>active Job Postings</h2>
+            {% for job in active_job_postings %}
+                <div class="job">
+                    <strong>{{ job.title }}</strong><br>
+                    {{ job.description }}
+                    {{ job.salary|intcomma }}
+                </div>
+            {% empty %}
+                <p>No job postings found.</p>
+            {% endfor %}
+        </div>
+        <div class="column">
+            <h2>Not Active Job Postings</h2>
+            {% for active_job in not_active_job_postings %}
+                <div class="job">
+                    <strong>{{ active_job.title }}</strong><br>
+                    {{ active_job.description }}
+                </div>
+            {% empty %}
+                <p>No active job postings.</p>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>
